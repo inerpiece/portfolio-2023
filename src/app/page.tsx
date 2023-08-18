@@ -1,9 +1,10 @@
 import Image from "next/image";
+import FluidPage from "@/components/FluidPage";
 
 export default function Home() {
   return (
-    <main className="flex justify-center content-center min-h-screen">
-      <section className="flex items-center flex-col p-10 justify-center">
+    <FluidPage>
+      <section className="flex items-center flex-col justify-center">
         <h1 className="text-xl">
           <span className="text-cyan-400">Frontend</span> Engineer
         </h1>
@@ -23,6 +24,6 @@ export default function Home() {
           friends and family.
         </p>
       </section>
-    </main>
+    </FluidPage>
   );
 }
