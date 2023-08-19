@@ -7,11 +7,11 @@ import CloseMenuIcon from "./icons/CloseMenuIcon";
 
 function Header() {
   const currentRoute = usePathname();
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [burgerState, setBurgerState] = useState(false);
   const handleResize = () => setWindowWidth(window.innerWidth);
 
-  const toggleBurgerMenu = () => {
+  const toggleBurgerMenu = (e: any) => {
     setBurgerState(!burgerState);
   };
 
@@ -27,18 +27,18 @@ function Header() {
   return (
     <>
       {windowWidth >= 980 ? (
-        <header className="w-screen relative">
-          <nav className="text-lg text-white w-[980px] h-[60px] absolute top-0 left-0 right-0 ml-auto mr-auto">
+        <header className="w-full fixed flex justify-center">
+          <nav className="text-lg text-white w-[980px] h-[60px]">
             <ul className="flex justify-between text-center h-full">
               <li
                 className={`
                   ${
-                    currentRoute === "/" ? "bg-gray-600" : ""
-                  } w-2/4 bg-gray-800 hover:bg-gray-400`}
+                    currentRoute === "/" ? "bg-gray-600" : "bg-gray-800"
+                  } w-2/4 hover:bg-gray-400`}
               >
                 <Link
                   href={"/"}
-                  className="w-full h-full flex justify-center items-center"
+                  className="w-full h-full flex justify-center items-center text-slate-200"
                 >
                   /home
                 </Link>
@@ -46,12 +46,12 @@ function Header() {
               <li
                 className={`
                 ${
-                  currentRoute === "/projects" ? "bg-gray-600" : ""
-                } w-2/4 bg-gray-800 hover:bg-gray-400`}
+                  currentRoute === "/projects" ? "bg-gray-600" : "bg-gray-800"
+                } w-2/4 hover:bg-gray-400`}
               >
                 <Link
                   href={"/projects"}
-                  className="w-full h-full flex justify-center items-center"
+                  className="w-full h-full flex justify-center items-center text-slate-200"
                 >
                   /projects
                 </Link>
@@ -66,9 +66,10 @@ function Header() {
           // 1) add the transition only for the mobile media query - didnt work
           // 2) additional js/ts logic - quite unnecessary
           // 3) add -webkit-backface-visibility - didn't work
+          onClick={toggleBurgerMenu}
           className={`${
             burgerState ? "translate-x-0" : "translate-x-[-100%]"
-          } w-3/4 min-h-screen absolute z-10 bg-gray-900 transition-all`}
+          } w-full min-h-screen fixed z-20 bg-gray-900 transition-all`}
           // style={{ WebkitBackfaceVisibility: "hidden" }}
         >
           <div className="flex justify-between h-[60px]">
@@ -90,21 +91,30 @@ function Header() {
             <ul className="w-full">
               <li
                 className={`${
-                  currentRoute === "/" ? "bg-gray-600" : ""
-                } w-full pl-10 h-[60px] flex items-center border-b-4 border-b-cyan-800 bg-gray-800 hover:bg-gray-400`}
+                  currentRoute === "/" ? "bg-gray-600" : "bg-gray-800"
+                } w-full pl-10 h-[60px] flex items-center border-b-4 border-b-cyan-800 hover:bg-gray-400`}
               >
-                <Link href="/" className="w-full h-full flex items-center">
+                <Link
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  href="/"
+                  className="w-full h-full flex items-center text-slate-200"
+                >
                   /home
                 </Link>
               </li>
               <li
                 className={`${
-                  currentRoute === "/projects" ? "bg-gray-600" : ""
-                } w-full pl-10 h-[60px] flex items-center border-b-4 border-b-cyan-800 bg-gray-800 hover:bg-gray-400`}
+                  currentRoute === "/projects" ? "bg-gray-600" : "bg-gray-800"
+                } w-full pl-10 h-[60px] flex items-center border-b-4 border-b-cyan-800 hover:bg-gray-400`}
               >
                 <Link
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                   href="/projects"
-                  className="w-full h-full flex items-center"
+                  className="w-full h-full flex items-center text-slate-200"
                 >
                   /projects
                 </Link>
