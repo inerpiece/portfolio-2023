@@ -1,5 +1,18 @@
 import FluidPage from "@/components/FluidPage";
 import FluidSection from "@/components/FluidSection";
+
+export const projects = [
+  {
+    route: "bgg",
+    name: "Background Generator",
+    description: "Lorem ipsum",
+  },
+  {
+    route: "bgg2",
+    name: "Background Generator2",
+    description: "Lorem ipsum 2",
+  },
+];
 export default function Projects() {
   return (
     <FluidPage>
@@ -31,6 +44,19 @@ export default function Projects() {
           />
         </div>
       </FluidSection>
+      {projects.map((project) => (
+        <FluidSection interactive={true} link={project.route}>
+          <p className="basis-full md:pr-2 pb-4 md:pb-0">
+            {project.description}
+          </p>
+          <div className="basis-full  md:pl-2 ">
+            <img
+              src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+              alt=""
+            />
+          </div>
+        </FluidSection>
+      ))}
     </FluidPage>
   );
 }

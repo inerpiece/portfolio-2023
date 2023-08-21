@@ -11,7 +11,7 @@ function Header() {
   const [burgerState, setBurgerState] = useState(false);
   const handleResize = () => setWindowWidth(window.innerWidth);
 
-  const toggleBurgerMenu = (e: any) => {
+  const toggleBurgerMenu = () => {
     setBurgerState(!burgerState);
   };
 
