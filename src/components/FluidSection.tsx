@@ -23,7 +23,8 @@ function FluidSection({
 }: FluidSectionProps) {
   return (
     // REMOVE: temporary color while developing the component
-
+    // TODO: Rework so that even if it is interactive it can still be customized:
+    // flush, background, accents
     <>
       {!interactive ? (
         <section
